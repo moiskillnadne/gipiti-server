@@ -9,7 +9,7 @@ app.get('/', (req, res) => {
 })
 
 app.get("/health-check", (req, res) => {
-  res.status(200).send(`[${process.env.ENV}] OK`)
+  res.status(200).send(`OK. Environment: ${process.env.NODE_ENV ?? "NOT_DEFINED"}`)
 })
 
 app.listen(port, () => {
