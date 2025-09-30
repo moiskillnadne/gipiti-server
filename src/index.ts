@@ -1,11 +1,14 @@
 import '@dotenvx/dotenvx/config'
 import express from 'express'
+import { prisma } from './prisma-client.js'
 
 const app = express()
 const port = process.env.PORT || 3000
 
-app.get('/', (req, res) => {
-  res.send('Hello World')
+app.get('/', async (req, res) => {
+  const users = await prisma.user.findMany()
+
+  res.send(users)
 })
 
 app.get("/health-check", (req, res) => {
