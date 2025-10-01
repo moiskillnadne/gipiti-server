@@ -39,7 +39,7 @@ export const verifyToken = async (
       lastname: user.lastname,
     }
     next();
-  } catch (error) {
+  } catch (error: any) {
     res.status(401).json({ message: "Invalid or expired token", details: { name: error.name, message: error.message } });
   }
 };

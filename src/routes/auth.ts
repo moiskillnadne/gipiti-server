@@ -39,14 +39,15 @@ router.post(
     try {
       const data = await cognito.send(command);
 
-      await prisma.user.create({
-        data: {
-          id: data.UserSub,
-          email: email,
-          isConfimed: false,
-        }
-      })
-
+      if (data.UserSub) {
+        await prisma.user.create({
+          data: {
+            id: data.UserSub,
+            email: email,
+            isConfimed: false,
+          }
+        })
+      }
 
       res.status(201).json({ 
         message: "User created successfully", 
