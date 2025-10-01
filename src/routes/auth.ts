@@ -66,6 +66,9 @@ router.post(
         userSub: data.UserSub 
       });
     } catch (error: unknown) {
+
+      logger.error(`Error creating user: ${error}`)
+      
       if (error instanceof Error) {
         res.status(400).json({ name: error.name, message: error.message });
       } else {
