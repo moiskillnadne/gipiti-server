@@ -29,9 +29,9 @@
     // "noFallthroughCasesInSwitch": true,
     // "noPropertyAccessFromIndexSignature": true,
 
-    "allowImportingTsExtensions": true,
-    "noEmit": true,
-    "emitDeclarationOnly": true,
+    "allowImportingTsExtensions": false,
+    "noEmit": false,
+    "emitDeclarationOnly": false,
 
     // Recommended Options
     "strict": true,

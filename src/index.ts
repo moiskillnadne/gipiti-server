@@ -2,9 +2,9 @@ import '@dotenvx/dotenvx/config'
 import express from 'express'
 import type { Request, Response } from 'express';
 import cookieParser from "cookie-parser";
-import { prisma } from './prisma-client.ts'
-import { router as authRouter } from './routes/auth.ts'
-import { verifyToken } from './middleware/verifyToken.ts';
+import { prisma } from './prisma-client.js'
+import { router as authRouter } from './routes/auth.js'
+import { verifyToken } from './middleware/verifyToken.js';
 
 const app = express()
 const port = process.env.PORT || 3000

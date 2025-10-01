@@ -1,6 +1,6 @@
 import type { Request, Response, NextFunction } from "express";
 import { CognitoJwtVerifier } from "aws-jwt-verify";
-import { prisma } from "../prisma-client.ts";
+import { prisma } from "../prisma-client.js";
 
 const verifier = CognitoJwtVerifier.create({
   userPoolId: process.env.COGNITO_USER_POOL_ID!,

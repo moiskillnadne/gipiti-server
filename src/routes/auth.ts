@@ -2,10 +2,10 @@ import { Router } from 'express';
 import type { Request, Response } from 'express';
 import rateLimit from 'express-rate-limit';
 import { ConfirmSignUpCommand, GlobalSignOutCommand, InitiateAuthCommand, ResendConfirmationCodeCommand, SignUpCommand } from '@aws-sdk/client-cognito-identity-provider';
-import { generateSecretHash } from '../middleware/generateSecretHash.ts';
-import cognito from '../config/cognito.ts';
-import cognitoClient from '../config/cognito.ts';
-import { prisma } from '../prisma-client.ts';
+import { generateSecretHash } from '../middleware/generateSecretHash.js';
+import cognito from '../config/cognito.js';
+import cognitoClient from '../config/cognito.js';
+import { prisma } from '../prisma-client.js';
 
 const router = Router();
 
