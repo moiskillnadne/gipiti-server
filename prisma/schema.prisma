@@ -18,5 +18,6 @@ model User {
   email String @unique
   firstname String?
   lastname String?
+  isConfimed Boolean
   createdAt DateTime @default(now())
 }

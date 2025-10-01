@@ -21,13 +21,18 @@
     "migrate:deploy": "prisma migrate deploy"
   },
   "dependencies": {
+    "@aws-sdk/client-cognito-identity-provider": "^3.899.0",
     "@dotenvx/dotenvx": "^1.51.0",
     "@prisma/client": "^6.16.3",
+    "aws-jwt-verify": "^5.1.0",
+    "cookie-parser": "^1.4.7",
     "express": "^5.1.0",
+    "express-rate-limit": "^8.1.0",
     "prisma": "^6.16.3"
   },
   "devDependencies": {
     "@eslint/js": "^9.36.0",
+    "@types/cookie-parser": "^1.4.9",
     "@types/express": "^5.0.3",
     "@types/node": "^24.5.2",
     "eslint": "^9.36.0",

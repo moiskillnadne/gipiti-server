@@ -29,6 +29,10 @@
     // "noFallthroughCasesInSwitch": true,
     // "noPropertyAccessFromIndexSignature": true,
 
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
+    "emitDeclarationOnly": true,
+
     // Recommended Options
     "strict": true,
     "jsx": "react-jsx",
