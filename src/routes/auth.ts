@@ -6,6 +6,7 @@ import { generateSecretHash } from '../middleware/generateSecretHash.js';
 import cognito from '../config/cognito.js';
 import cognitoClient from '../config/cognito.js';
 import { prisma } from '../prisma-client.js';
+import { createLoggerForEndpoint } from '../core/logger.js';
 
 const router = Router();
 
@@ -21,7 +22,11 @@ router.post(
   "/signup",
   generateSecretHash,
   async (req: Request, res: Response) => {
+    const logger = createLoggerForEndpoint('signup')
+
     const { password, email, secretHash } = req.body;
+
+    logger.info(`Signup request received: ${email}`)
 
     const command = new SignUpCommand({
       ClientId: process.env.COGNITO_CLIENT_ID!,
@@ -37,9 +42,14 @@ router.post(
     });
 
     try {
+      logger.info(`Sending signup request to Cognito`)
       const data = await cognito.send(command);
 
+      logger.info(`Cognito response received: ${JSON.stringify(data)}`)
+
       if (data.UserSub) {
+        logger.info(`Sending user to database: ${email}`)
+
         await prisma.user.create({
           data: {
             id: data.UserSub,
@@ -47,6 +57,8 @@ router.post(
             isConfimed: false,
           }
         })
+
+        logger.info(`User created in database: ${email}`)
       }
 
       res.status(201).json({ 

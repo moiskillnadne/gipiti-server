@@ -24,10 +24,14 @@
     "@aws-sdk/client-cognito-identity-provider": "^3.899.0",
     "@dotenvx/dotenvx": "^1.51.0",
     "@prisma/client": "^6.16.3",
+    "@serdnam/pino-cloudwatch-transport": "^1.0.4",
     "aws-jwt-verify": "^5.1.0",
     "cookie-parser": "^1.4.7",
     "express": "^5.1.0",
     "express-rate-limit": "^8.1.0",
+    "pino": "^9.12.0",
+    "pino-http": "^10.5.0",
+    "pino-pretty": "^13.1.1",
     "prisma": "^6.16.3"
   },
   "devDependencies": {
