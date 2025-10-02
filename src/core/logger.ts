@@ -15,8 +15,6 @@ export function createLoggerForEndpoint(endpoint: string) {
               logGroupName: `gipiti-${process.env.NODE_ENV}`,
               logStreamName: logStreamName,
               awsRegion: process.env.AWS_REGION,
-              awsAccessKeyId: process.env.AWS_ACCESS_KEY_ID,
-              awsSecretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
           }
         },
         {
