@@ -26,7 +26,7 @@ export function createLoggerForEndpoint(endpoint: string) {
               createLogStream: true,
               uploadInterval: 30000,
               onError: (error: any) => {
-                console.error('[LOGGER ERROR] Error sending logs to CloudWatch:', error);
+                console.error('[LOGGER ERROR] Error sending logs to CloudWatch:', JSON.stringify(error));
               }
           }
         },
