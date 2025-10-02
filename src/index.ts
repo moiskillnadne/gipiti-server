@@ -4,7 +4,7 @@ import type { Request, Response } from 'express';
 import cookieParser from "cookie-parser";
 import { router as authRouter } from './routes/auth.js'
 import { verifyToken } from './middleware/verifyToken.js';
-import { Logger } from './core/logger.js';
+import { logger } from './core/logger.js';
 
 const app = express()
 const port = process.env.PORT || 3000
@@ -30,7 +30,5 @@ app.get("/health-check", (req, res) => {
 })
 
 app.listen(port, () => {
-  const logger = Logger.forEndpoint('server-startup')
-
   logger.info(`Server is running on port ${port}`)
 })
