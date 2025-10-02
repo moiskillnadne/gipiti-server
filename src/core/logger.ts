@@ -37,6 +37,7 @@ export const logger = winston.createLogger({
       level: 'info',
       errorHandler(err) {
         console.error(`[LOGGER ERROR] Error sending logs to CloudWatch: ${err.message}`);
+        console.log(JSON.stringify(err))
       },
     })
   ]
