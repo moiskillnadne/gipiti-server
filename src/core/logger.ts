@@ -42,6 +42,9 @@ export class Logger implements ILogger {
       awsRegion: this.awsRegion,
       jsonMessage: true,
       level: 'info',
+      errorHandler(err) {
+        console.error('[LOGGER ERROR] Error sending logs to CloudWatch:', err);
+      },
     });
 
     const consoleTransport = new winston.transports.Console({
