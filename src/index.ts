@@ -4,7 +4,6 @@ import type { Request, Response } from 'express';
 import cookieParser from "cookie-parser";
 import { router as authRouter } from './routes/auth.js'
 import { verifyToken } from './middleware/verifyToken.js';
-import { logger } from './core/logger.js';
 
 const app = express()
 const port = process.env.PORT || 3000
@@ -26,9 +25,11 @@ app.get("/profile", verifyToken, (req: Request, res: Response) => {
 
 app.get("/health-check", (req, res) => {
 
+  console.log(`Health check: ${process.env.NODE_ENV ?? "NOT_DEFINED"}`)
+
   res.status(200).send(`OK. Environment: ${process.env.NODE_ENV ?? "NOT_DEFINED"}`)
 })
 
 app.listen(port, () => {
-  logger.info(`Server is running on port ${port}`)
+  console.log(`Server is running on port ${port}`)
 })
