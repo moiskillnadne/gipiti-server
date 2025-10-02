@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "@aws-sdk/client-cognito-identity-provider": "^3.899.0",
+    "@aws-sdk/credential-provider-node": "^3.901.0",
     "@dotenvx/dotenvx": "^1.51.0",
     "@prisma/client": "^6.16.3",
     "@serdnam/pino-cloudwatch-transport": "^1.0.4",

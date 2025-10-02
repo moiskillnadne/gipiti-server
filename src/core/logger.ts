@@ -1,5 +1,6 @@
 import winston from 'winston';
 import WinstonCloudWatch from 'winston-cloudwatch';
+import { defaultProvider } from '@aws-sdk/credential-provider-node';
 
 export const logger = winston.createLogger({
   level: 'info',
@@ -29,8 +30,9 @@ export const logger = winston.createLogger({
       logGroupName: `gipiti-${process.env.NODE_ENV}`,
       logStreamName: `${new Date().toISOString().split('T')[0]}`,
       awsRegion: process.env.AWS_REGION!,
-      awsAccessKeyId: process.env.AWS_ACCESS_KEY_ID!,
-      awsSecretKey: process.env.AWS_SECRET_ACCESS_KEY!,
+      awsOptions: {
+        credentials: defaultProvider()
+      },
       jsonMessage: true,
       level: 'info',
       errorHandler(err) {
