@@ -23,6 +23,8 @@ router.post(
   async (req: Request, res: Response) => {
     const { password, email, secretHash } = req.body;
 
+    console.log(`[AUTH] /signup: Starting signup for ${email}`)
+
     const command = new SignUpCommand({
       ClientId: process.env.COGNITO_CLIENT_ID!,
       Username: email,
@@ -37,9 +39,11 @@ router.post(
     });
 
     try {
+      console.log(`[AUTH] /signup: Sending signup command to Cognito`)
       const data = await cognito.send(command);
 
       if (data.UserSub) {
+        console.log(`[AUTH] /signup: User created in Cognito, creating user in database`)
         await prisma.user.create({
           data: {
             id: data.UserSub,
@@ -47,16 +51,21 @@ router.post(
             isConfimed: false,
           }
         })
+        console.log(`[AUTH] /signup: User created in database`)
       }
 
       res.status(201).json({ 
         message: "User created successfully", 
         userSub: data.UserSub 
       });
-    } catch (error: unknown) {
+    } catch (error: any) {
+      console.log(`[AUTH] /signup: Error creating user`, error)
+      console.log(`[AUTH] /signup: Error name`, error.name)
+      console.log(`[AUTH] /signup: Error message`, error.message)
 
       if (error instanceof Error) {
         res.status(400).json({ name: error.name, message: error.message });
+        console.log(`[AUTH] /signup: Error creating user`, error)
       } else {
         res.status(400).json({ name: "UnknownError", message: "Unknown error" });
       }
