@@ -28,6 +28,7 @@
     "@serdnam/pino-cloudwatch-transport": "^1.0.4",
     "aws-jwt-verify": "^5.1.0",
     "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
     "express": "^5.1.0",
     "express-rate-limit": "^8.1.0",
     "prisma": "^6.16.3",
@@ -37,6 +38,7 @@
   "devDependencies": {
     "@eslint/js": "^9.36.0",
     "@types/cookie-parser": "^1.4.9",
+    "@types/cors": "^2.8.19",
     "@types/express": "^5.0.3",
     "@types/node": "^24.5.2",
     "eslint": "^9.36.0",
