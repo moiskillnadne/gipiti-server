@@ -9,7 +9,7 @@ import { verifyToken } from './middleware/verifyToken.js';
 const app = express()
 const port = process.env.PORT || 3000
 
-const allowedOrigins = ['http://localhost:5173', 'https://d1dsubut8s3lhy.cloudfront.net']
+const allowedOrigins = ['http://localhost:5173', 'https://localhost:5173', 'https://d1dsubut8s3lhy.cloudfront.net']
 
 app.use(cors({
   origin: (origin, cb) => cb(null, allowedOrigins.includes(origin!) || !origin),
