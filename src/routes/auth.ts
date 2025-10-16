@@ -166,15 +166,15 @@ router.post(
 
       res.cookie("accessToken", accessToken, {
         httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
-        sameSite: process.env.NODE_ENV === "production" ? 'none' : 'lax',
+        secure: process.env.NODE_ENV !== "local",
+        sameSite: process.env.NODE_ENV !== "local" ? 'none' : 'lax',
         maxAge: 3600 * 1000, // 1 час
       });
 
       res.cookie("refreshToken", refreshToken, {
         httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
-        sameSite: process.env.NODE_ENV === "production" ? 'none' : 'lax',
+        secure: process.env.NODE_ENV !== "local",
+        sameSite: process.env.NODE_ENV !== "local" ? 'none' : 'lax',
         maxAge: 30 * 24 * 3600 * 1000, // 30 дней
       });
 
@@ -219,8 +219,8 @@ router.post(
 
       res.cookie("accessToken", newAccessToken, {
         httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
-        sameSite: process.env.NODE_ENV === "production" ? 'none' : 'lax',
+        secure: process.env.NODE_ENV !== "local",
+        sameSite: process.env.NODE_ENV !== "local" ? 'none' : 'lax',
         maxAge: 3600 * 1000,
       });
 
