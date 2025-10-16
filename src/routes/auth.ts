@@ -167,14 +167,14 @@ router.post(
       res.cookie("accessToken", accessToken, {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
-        sameSite: 'none',
+        sameSite: process.env.NODE_ENV === "production" ? 'none' : 'lax',
         maxAge: 3600 * 1000, // 1 час
       });
 
       res.cookie("refreshToken", refreshToken, {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
-        sameSite: 'none',
+        sameSite: process.env.NODE_ENV === "production" ? 'none' : 'lax',
         maxAge: 30 * 24 * 3600 * 1000, // 30 дней
       });
 
@@ -217,11 +217,10 @@ router.post(
       const newAccessToken = data.AuthenticationResult?.AccessToken;
       const newIdToken = data.AuthenticationResult?.IdToken;
 
-      // Обновляем access token в cookie
       res.cookie("accessToken", newAccessToken, {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
-        sameSite: 'none',
+        sameSite: process.env.NODE_ENV === "production" ? 'none' : 'lax',
         maxAge: 3600 * 1000,
       });
 

@@ -17,7 +17,7 @@ export const verifyToken = async (
 
 
   if (!token) {
-    return res.status(401).json({ message: "No token provided" });
+    return res.status(400).json({ message: "No token provided" });
   }
 
   try {
