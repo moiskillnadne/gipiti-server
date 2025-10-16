@@ -9,7 +9,7 @@ import { verifyToken } from './middleware/verifyToken.js';
 const app = express()
 const port = process.env.PORT || 3000
 
-const allowedOrigins = ['http://localhost:5173', 'https://localhost:5173', 'https://d1dsubut8s3lhy.cloudfront.net']
+const allowedOrigins = ['http://localhost:5173', 'https://dev-app.gipiti.riabkov.com', 'https://d1dsubut8s3lhy.cloudfront.net']
 
 app.use(cors({
   origin: (origin, cb) => cb(null, allowedOrigins.includes(origin!) || !origin),
@@ -25,7 +25,7 @@ app.use(cookieParser())
 app.use('/api/auth', authRouter)
 
 
-app.get("/profile", verifyToken, (req: Request, res: Response) => {
+app.get("/api/profile", verifyToken, (req: Request, res: Response) => {
   res.json({ 
     message: "Protected route", 
     user: req.user 
