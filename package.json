@@ -21,11 +21,14 @@
     "migrate:deploy": "prisma migrate deploy"
   },
   "dependencies": {
+    "@ai-sdk/openai": "^2.0.53",
     "@aws-sdk/client-cognito-identity-provider": "^3.899.0",
     "@aws-sdk/credential-provider-node": "^3.901.0",
     "@dotenvx/dotenvx": "^1.51.0",
     "@prisma/client": "^6.16.3",
     "@serdnam/pino-cloudwatch-transport": "^1.0.4",
+    "ai": "^5.0.76",
+    "assistant-stream": "^0.2.36",
     "aws-jwt-verify": "^5.1.0",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",

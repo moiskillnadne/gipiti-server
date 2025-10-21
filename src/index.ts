@@ -6,6 +6,9 @@ import cors from 'cors'
 import { router as authRouter } from './routes/auth.js'
 import { verifyToken } from './middleware/verifyToken.js';
 
+import { convertToModelMessages, streamText } from 'ai';
+import { openai } from '@ai-sdk/openai';
+
 const app = express()
 const port = process.env.PORT || 3000
 
@@ -19,8 +22,9 @@ app.use(cors({
   optionsSuccessStatus: 204,
 }));
 
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
+app.use(express.json({ limit: '5mb' }))
+app.use(express.urlencoded({ extended: true, limit: '5mb' }))
+app.use(express.raw({ limit: '5mb' }))
 app.use(cookieParser())
 app.use('/api/auth', authRouter)
 
@@ -30,6 +34,17 @@ app.get("/api/profile", verifyToken, (req: Request, res: Response) => {
     message: "Protected route", 
     user: req.user 
   });
+});
+
+app.post("/api/chat", verifyToken, async (req: Request, res: Response) => {
+  const { messages } = req.body;
+
+  const result = streamText({
+    model: openai("gpt-5-nano"),
+    messages: convertToModelMessages(messages),
+  });
+
+  result.pipeUIMessageStreamToResponse(res)
 });
 
 
